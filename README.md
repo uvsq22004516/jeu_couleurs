@@ -1,2 +1,2 @@
 # jeu_couleurs_CHAMPENOIS.py
-DEUXIEME PROJET 
+DEUXIEME PROJET : Jeu de couleurs 
