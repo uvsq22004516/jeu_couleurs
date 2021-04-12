@@ -67,7 +67,7 @@ btn_orange.grid(row=4, column=4)
 btn_jaune.grid(row=5, column=1)
 btn_blanc.grid(row=5, column=3)
 
-canvas = tk.Canvas(root, width = 650, height = 500, bg = "white")
+canvas = tk.Canvas(root, width = 100, height = 25, bg = "white smoke")
 canvas.grid()
 root.mainloop()
 
