@@ -14,7 +14,7 @@ blanc = "snow"
 couleurs_choisies = []
 couleurs = [rouge, bleu, vert, rose, orange, jaune, blanc]
 
-var_couleurs = rd.randint(1, 6)
+var_couleurs = rd.randint(0, 6)
 
 
 niveau = 2
