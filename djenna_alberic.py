@@ -44,7 +44,7 @@ fct_couleurs()
 
 #Definition Variables pour la fonction mots
 
-mots = ["rouge", "Bleu", "Vert", "Rose", "Orange", "Jaune", "Blanc"]
+mots = ["Rouge", "Bleu", "Vert", "Rose", "Orange", "Jaune", "Blanc"]
 mots_choisis = []
 
 
