@@ -50,7 +50,6 @@ def fct_couleurs() :
             rd.shuffle(couleurs)
             couleurs_choisies = couleurs 
             print(var_couleurs)
-            print(couleurs)
 
     print(couleurs_choisies)    
        
@@ -90,7 +89,6 @@ def fct_mots() :
             rd.shuffle(mots)
             mots_choisis = mots
             print(var_couleurs)
-            print(mots)
             
     print(mots_choisis)
 
