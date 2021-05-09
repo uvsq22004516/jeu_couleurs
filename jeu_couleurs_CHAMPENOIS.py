@@ -29,6 +29,7 @@ NIVEAU = 0
 
 
 ### A SUPPRIMER PLUS TARD
+#SUPER DIFFICILE POULOULOU
 rouge = "firebrick2"
 bleu = "deep sky blue"
 vert = "forest green"
@@ -61,9 +62,26 @@ def niv_2():
 def meilleurs_scores():
     pass
 
-def règles_du_jeu():
-    pass
 
+def règles_du_jeu():
+    def retour_menu():
+        règles_du_jeu_root.destroy()
+    
+    règles_du_jeu_root = tk.Tk()
+    règles_du_jeu_root.title("Règles du Jeu de Couleurs")
+    texte_règles1 = tk.Label(règles_du_jeu_root, text="***NIVEAU 1: Le joueur clique sur le bouton correspondant "
+                                                    "à la couleur du seul mot qui s'affiche.\n S'il réussit il gagne" 
+                                                    "1 point, sinon son score reste inchangé et le jeu continue.\n"
+                                                    , font=("Comic Sans MS", "10"))
+    texte_règles2 = tk.Label(règles_du_jeu_root, text="***NIVEAU 2:Le joueur clique sur les boutons correspondants" 
+                                                    "à la couleur des mots qui s'affichent.\n S'il réussit il gagne" 
+                                                    "1 point, sinon son score reste inchangé et le jeu continue."
+                                                    , font=("Comic Sans MS", "10"))
+    bouton_retour = tk.Button(règles_du_jeu_root, text="<--", command=retour_menu, font=("Comic Sans MS", "10"), relief="ridge", bd=5, bg="gainsboro", padx=10)
+    texte_règles1.grid()
+    texte_règles2.grid()
+    bouton_retour.grid()
+    règles_du_jeu_root.mainloop()
 
 
 canvas = tk.Canvas(menu_principal, width = LARGEUR, height = HAUTEUR, bg = "gray85")
@@ -87,7 +105,7 @@ for i in range(0, len(couleurs)):
     canvas.create_line((LARGEUR-15, (HAUTEUR/7)*i),(15, (HAUTEUR/7)*(i+1)), fill=couleurs[i], width=30)"""
 
 
-canvas.create_text((LARGEUR/2, HAUTEUR/6), text="JEU SUPER DIFFICILE POULOULOU", font=("Comic Sans MS", "20", "bold"))
+canvas.create_text((LARGEUR/2, HAUTEUR/6), text="JEU DE COULEURS", font=("Comic Sans MS", "20", "bold"))
 
 bouton_niv_1 = tk.Button(menu_principal, text="NIVEAU 1", command=niv_1, font=("Comic Sans MS", "10"), relief="raised", bd=5, bg="gainsboro", padx=10)
 bouton_niv_2 = tk.Button(menu_principal, text="NIVEAU 2", command=niv_2, font=("Comic Sans MS", "10"), relief="raised", bd=5, bg="gainsboro", padx=10)
