@@ -40,6 +40,7 @@ blanc = "snow"
 
 couleurs = [rouge, bleu, vert, rose, orange, jaune, blanc]
 
+mots = ["Rouge", "Bleu", "Vert", "Rose", "Orange", "Jaune", "Blanc"]
 
 
 
@@ -183,7 +184,7 @@ def fct_couleurs() :
 
 #Definition Variables pour la fonction mots
 
-mots = ["Rouge", "Bleu", "Vert", "Rose", "Orange", "Jaune", "Blanc"]
+
 
 
 def fct_mots() :
@@ -200,7 +201,6 @@ def fct_mots() :
 
         if var_couleurs < 7 :
 
-            
 
             for i in range(var_couleurs, 0, -1) :
                 rd.shuffle(mots)
@@ -214,6 +214,7 @@ def fct_mots() :
             return(var_couleurs)
             
     return(mots_choisis)
+
 
 
 ################## définition des widgets #############################################################
@@ -244,6 +245,66 @@ txt_btn_jaune = fond.create_text(((225+300)/2, (350+390)/2), text="Jaune", font=
 btn_blanc = fond.create_rectangle((400, 350), (475, 390), fill="snow", outline="snow")
 txt_btn_blanc = fond.create_text(((400+475)/2, (350+390)/2), text="Blanc", font=("Arial", "10", "bold"))
 
+
+######################## Placement des mots 
+
+
+if var_couleurs == 1 :
+
+    mot1 = fond.create_text(350, 190, text=mots_choisis[0], font=("Sitka Small", "20", "bold"))
+
+if var_couleurs == 2 :
+
+    mot1 = fond.create_text(286.2, 190, text=mots_choisis[0], font=("Sitka Small", "20", "bold"))
+    mot2 = fond.create_text(413.5, 190, text=mots_choisis[1], font=("Sitka Small", "20", "bold"))
+
+if var_couleurs == 3 :
+
+    mot1 = fond.create_text(286.2, 190, text=mots_choisis[0], font=("Sitka Small", "20", "bold"))
+    mot2 = fond.create_text(350, 190, text=mots_choisis[1], font=("Sitka Small", "20", "bold"))
+    mot3 = fond.create_text(413.5, 190, text=mots_choisis[2], font=("Sitka Small", "20", "bold"))
+
+
+if var_couleurs == 4 :
+
+    mot1 = fond.create_text(159, 190, text=mots_choisis[0], font=("Sitka Small", "20", "bold"))
+    mot2 = fond.create_text(286.2, 190, text=mots_choisis[1], font=("Sitka Small", "20", "bold"))
+    mot3 = fond.create_text(413.5, 190, text=mots_choisis[2], font=("Sitka Small", "20", "bold"))
+    mot4 = fond.create_text(541, 190, text=mots_choisis[3], font=("Sitka Small", "20", "bold"))
+
+
+if var_couleurs == 5 :
+
+    mot1 = fond.create_text(222.6, 190, text=mots_choisis[0], font=("Sitka Small", "20", "bold"))
+    mot2 = fond.create_text(286.2, 190, text=mots_choisis[1], font=("Sitka Small", "20", "bold"))
+    mot3 = fond.create_text(350, 190, text=mots_choisis[2], font=("Sitka Small", "20", "bold"))
+    mot4 = fond.create_text(413.5, 190, text=mots_choisis[3], font=("Sitka Small", "20", "bold"))
+    mot5 = fond.create_text(477.2, 190, text=mots_choisis[4], font=("Sitka Small", "20", "bold"))
+
+if var_couleurs == 6 :
+
+    mot1 = fond.create_text(159, 190, text=mots_choisis[0], font=("Sitka Small", "20", "bold"))
+    mot2 = fond.create_text(222.6, 190, text=mots_choisis[1], font=("Sitka Small", "20", "bold"))
+    mot3 = fond.create_text(286.2, 190, text=mots_choisis[2], font=("Sitka Small", "20", "bold"))
+    mot4 = fond.create_text(413.5, 190, text=mots_choisis[3], font=("Sitka Small", "20", "bold"))
+    mot5 = fond.create_text(477.2, 190, text=mots_choisis[4], font=("Sitka Small", "20", "bold"))
+    mot6 = fond.create_text(541, 190, text=mots_choisis[5], font=("Sitka Small", "20", "bold"))
+   
+
+
+if var_couleurs == 7 :
+
+    mot1 = fond.create_text(159, 190, text=mots_choisis[0], font=("Sitka Small", "20", "bold"))
+    mot2 = fond.create_text(222.6, 190, text=mots_choisis[1], font=("Sitka Small", "20", "bold"))
+    mot3 = fond.create_text(286.2, 190, text=mots_choisis[2], font=("Sitka Small", "20", "bold"))
+    mot4 = fond.create_text(350, 190, text=mots_choisis[3], font=("Sitka Small", "20", "bold"))
+    mot5 = fond.create_text(413.5, 190, text=mots_choisis[4], font=("Sitka Small", "20", "bold"))
+    mot6 = fond.create_text(477.2, 190, text=mots_choisis[5], font=("Sitka Small", "20", "bold"))
+    mot7 = fond.create_text(541, 190, text=mots_choisis[6], font=("Sitka Small", "20", "bold"))
+
+
+
+
 ################## événements liés aux widgets et appel à la boucle de gestion des événements #########
 
 btn_demarrer.grid(row=4, column=0)
@@ -253,3 +314,5 @@ fond.grid(row=0, rowspan= 5, columnspan=6)
 
 
 jeu.mainloop()
+
+
