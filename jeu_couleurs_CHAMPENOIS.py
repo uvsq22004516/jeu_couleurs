@@ -179,6 +179,8 @@ def fct_couleurs() :
             return(var_couleurs)
 
     return(couleurs_choisies)    
+
+fct_couleurs()
          
 
 
@@ -215,7 +217,7 @@ def fct_mots() :
             
     return(mots_choisis)
 
-
+fct_mots()
 
 ################## définition des widgets #############################################################
 fond = tk.Canvas(jeu, width = LARGEUR, height = HAUTEUR, bg = "gray85")
@@ -249,59 +251,71 @@ txt_btn_blanc = fond.create_text(((400+475)/2, (350+390)/2), text="Blanc", font=
 ######################## Placement des mots 
 
 
-if var_couleurs == 1 :
-
-    mot1 = fond.create_text(350, 190, text=mots_choisis[0], font=("Sitka Small", "20", "bold"))
-
-if var_couleurs == 2 :
-
-    mot1 = fond.create_text(286.2, 190, text=mots_choisis[0], font=("Sitka Small", "20", "bold"))
-    mot2 = fond.create_text(413.5, 190, text=mots_choisis[1], font=("Sitka Small", "20", "bold"))
-
-if var_couleurs == 3 :
-
-    mot1 = fond.create_text(286.2, 190, text=mots_choisis[0], font=("Sitka Small", "20", "bold"))
-    mot2 = fond.create_text(350, 190, text=mots_choisis[1], font=("Sitka Small", "20", "bold"))
-    mot3 = fond.create_text(413.5, 190, text=mots_choisis[2], font=("Sitka Small", "20", "bold"))
+def fct_placement() :
 
 
-if var_couleurs == 4 :
+    if NIVEAU == 1 :
 
-    mot1 = fond.create_text(159, 190, text=mots_choisis[0], font=("Sitka Small", "20", "bold"))
-    mot2 = fond.create_text(286.2, 190, text=mots_choisis[1], font=("Sitka Small", "20", "bold"))
-    mot3 = fond.create_text(413.5, 190, text=mots_choisis[2], font=("Sitka Small", "20", "bold"))
-    mot4 = fond.create_text(541, 190, text=mots_choisis[3], font=("Sitka Small", "20", "bold"))
+        mot1 = fond.create_text(350, 190, text=mots_choisis, fill = couleurs_choisies, font=("Sitka Small", "20", "bold"))
+
+    else :
 
 
-if var_couleurs == 5 :
+        if var_couleurs == 1 :
 
-    mot1 = fond.create_text(222.6, 190, text=mots_choisis[0], font=("Sitka Small", "20", "bold"))
-    mot2 = fond.create_text(286.2, 190, text=mots_choisis[1], font=("Sitka Small", "20", "bold"))
-    mot3 = fond.create_text(350, 190, text=mots_choisis[2], font=("Sitka Small", "20", "bold"))
-    mot4 = fond.create_text(413.5, 190, text=mots_choisis[3], font=("Sitka Small", "20", "bold"))
-    mot5 = fond.create_text(477.2, 190, text=mots_choisis[4], font=("Sitka Small", "20", "bold"))
+            mot1 = fond.create_text(350, 190, text=mots_choisis[0], fill = couleurs_choisies[0], font=("Sitka Small", "20", "bold"))
 
-if var_couleurs == 6 :
+        if var_couleurs == 2 :
 
-    mot1 = fond.create_text(159, 190, text=mots_choisis[0], font=("Sitka Small", "20", "bold"))
-    mot2 = fond.create_text(222.6, 190, text=mots_choisis[1], font=("Sitka Small", "20", "bold"))
-    mot3 = fond.create_text(286.2, 190, text=mots_choisis[2], font=("Sitka Small", "20", "bold"))
-    mot4 = fond.create_text(413.5, 190, text=mots_choisis[3], font=("Sitka Small", "20", "bold"))
-    mot5 = fond.create_text(477.2, 190, text=mots_choisis[4], font=("Sitka Small", "20", "bold"))
-    mot6 = fond.create_text(541, 190, text=mots_choisis[5], font=("Sitka Small", "20", "bold"))
+            mot1 = fond.create_text(300, 190, text=mots_choisis[0], fill = couleurs_choisies[0], font=("Sitka Small", "20", "bold"))
+            mot2 = fond.create_text(400, 190, text=mots_choisis[1],  fill = couleurs_choisies[1],font=("Sitka Small", "20", "bold"))
+
+        if var_couleurs == 3 :
+
+            mot1 = fond.create_text(150, 190, text=mots_choisis[0], fill = couleurs_choisies[0], font=("Sitka Small", "20", "bold"))
+            mot2 = fond.create_text(350, 190, text=mots_choisis[1], fill = couleurs_choisies[1], font=("Sitka Small", "20", "bold"))
+            mot3 = fond.create_text(550, 190, text=mots_choisis[2], fill = couleurs_choisies[2], font=("Sitka Small", "20", "bold"))
+
+
+        if var_couleurs == 4 :
+
+            mot1 = fond.create_text(125, 190, text=mots_choisis[0], fill = couleurs_choisies[0], font=("Sitka Small", "20", "bold"))
+            mot2 = fond.create_text(250, 190, text=mots_choisis[1], fill = couleurs_choisies[1], font=("Sitka Small", "20", "bold"))
+            mot3 = fond.create_text(375, 190, text=mots_choisis[2], fill = couleurs_choisies[2], font=("Sitka Small", "20", "bold"))
+            mot4 = fond.create_text(500, 190, text=mots_choisis[3], fill = couleurs_choisies[3], font=("Sitka Small", "20", "bold"))
+
+
+        if var_couleurs == 5 :
+
+            mot1 = fond.create_text(100, 190, text=mots_choisis[0], fill = couleurs_choisies[0], font=("Sitka Small", "20", "bold"))
+            mot2 = fond.create_text(200, 190, text=mots_choisis[1], fill = couleurs_choisies[1], font=("Sitka Small", "20", "bold"))
+            mot3 = fond.create_text(300, 190, text=mots_choisis[2], fill = couleurs_choisies[2], font=("Sitka Small", "20", "bold"))
+            mot4 = fond.create_text(400, 190, text=mots_choisis[3], fill = couleurs_choisies[3], font=("Sitka Small", "20", "bold"))
+            mot5 = fond.create_text(500, 190, text=mots_choisis[4], fill = couleurs_choisies[4], font=("Sitka Small", "20", "bold"))
+
+        if var_couleurs == 6 :
+
+            mot1 = fond.create_text(75, 190, text=mots_choisis[0], fill = couleurs_choisies[0], font=("Sitka Small", "20", "bold"))
+            mot2 = fond.create_text(150, 190, text=mots_choisis[1], fill = couleurs_choisies[1], font=("Sitka Small", "20", "bold"))
+            mot3 = fond.create_text(225, 190, text=mots_choisis[2], fill = couleurs_choisies[2], font=("Sitka Small", "20", "bold"))
+            mot4 = fond.create_text(300, 190, text=mots_choisis[3], fill = couleurs_choisies[3], font=("Sitka Small", "20", "bold"))
+            mot5 = fond.create_text(375, 190, text=mots_choisis[4], fill = couleurs_choisies[4], font=("Sitka Small", "20", "bold"))
+            mot6 = fond.create_text(450, 190, text=mots_choisis[5], fill = couleurs_choisies[5], font=("Sitka Small", "20", "bold"))
    
 
 
-if var_couleurs == 7 :
+        if var_couleurs == 7 :
 
-    mot1 = fond.create_text(159, 190, text=mots_choisis[0], font=("Sitka Small", "20", "bold"))
-    mot2 = fond.create_text(222.6, 190, text=mots_choisis[1], font=("Sitka Small", "20", "bold"))
-    mot3 = fond.create_text(286.2, 190, text=mots_choisis[2], font=("Sitka Small", "20", "bold"))
-    mot4 = fond.create_text(350, 190, text=mots_choisis[3], font=("Sitka Small", "20", "bold"))
-    mot5 = fond.create_text(413.5, 190, text=mots_choisis[4], font=("Sitka Small", "20", "bold"))
-    mot6 = fond.create_text(477.2, 190, text=mots_choisis[5], font=("Sitka Small", "20", "bold"))
-    mot7 = fond.create_text(541, 190, text=mots_choisis[6], font=("Sitka Small", "20", "bold"))
+            mot1 = fond.create_text(75, 190, text=mots_choisis[0], fill = couleurs_choisies[0], font=("Sitka Small", "20", "bold"))
+            mot2 = fond.create_text(150, 190, text=mots_choisis[1], fill = couleurs_choisies[1], font=("Sitka Small", "20", "bold"))
+            mot3 = fond.create_text(225, 190, text=mots_choisis[2], fill = couleurs_choisies[2], font=("Sitka Small", "20", "bold"))
+            mot4 = fond.create_text(350, 190, text=mots_choisis[3], fill = couleurs_choisies[3], font=("Sitka Small", "20", "bold"))
+            mot5 = fond.create_text(425, 190, text=mots_choisis[4], fill = couleurs_choisies[4], font=("Sitka Small", "20", "bold"))
+            mot6 = fond.create_text(500, 190, text=mots_choisis[5], fill = couleurs_choisies[5], font=("Sitka Small", "20", "bold"))
+            mot7 = fond.create_text(575, 190, text=mots_choisis[6], fill = couleurs_choisies[6], font=("Sitka Small", "20", "bold"))
 
+
+fct_placement()
 
 
 
