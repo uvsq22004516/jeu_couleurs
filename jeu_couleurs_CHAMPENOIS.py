@@ -26,7 +26,7 @@ import random as rd
 LARGEUR = 700
 HAUTEUR = 450
 NIVEAU = 0
-
+var_couleurs = rd.randint(1, 7)
 
 ### A SUPPRIMER PLUS TARD
 #SUPER DIFFICILE POULOULOU
@@ -143,6 +143,78 @@ def start():
 
 def reset():
     pass
+
+
+def fct_couleurs() :
+
+    global var_couleurs
+
+    global couleurs
+    couleurs = [rouge, bleu, vert, rose, orange, jaune, blanc]
+
+    global couleurs_choisies
+    couleurs_choisies = []
+
+   
+    if NIVEAU == 1 :
+        rd.shuffle(couleurs)
+        couleurs_choisies = couleurs[1]
+
+    else :
+
+        if var_couleurs < 7 :
+
+            for i in range(var_couleurs, 0, -1) :
+
+                rd.shuffle(couleurs)
+                couleurs_choisies.append(couleurs[i])
+                couleurs.remove(couleurs[i])
+            return(var_couleurs)
+
+        else :
+
+            rd.shuffle(couleurs)
+            couleurs_choisies = couleurs 
+            return(var_couleurs)
+
+    return(couleurs_choisies)    
+         
+
+
+#Definition Variables pour la fonction mots
+
+mots = ["Rouge", "Bleu", "Vert", "Rose", "Orange", "Jaune", "Blanc"]
+
+
+def fct_mots() :
+
+    global mots_choisis
+    mots_choisis = []
+
+    if NIVEAU == 1 :
+        rd.shuffle(mots)
+        mots_choisis = mots[1]
+
+
+    else : 
+
+        if var_couleurs < 7 :
+
+            
+
+            for i in range(var_couleurs, 0, -1) :
+                rd.shuffle(mots)
+                mots_choisis.append(mots[i])
+                mots.remove(mots[i])
+
+        else :
+
+            rd.shuffle(mots)
+            mots_choisis = mots
+            return(var_couleurs)
+            
+    return(mots_choisis)
+
 
 ################## définition des widgets #############################################################
 fond = tk.Canvas(jeu, width = LARGEUR, height = HAUTEUR, bg = "gray85")
