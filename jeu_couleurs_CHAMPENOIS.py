@@ -256,26 +256,29 @@ txt_btn_blanc = fond.create_text(((400+475)/2, (350+390)/2), text="Blanc", font=
 
 def fct_placement() :
 
-    placement_mots = 200
-
+   
     if NIVEAU == 1 :
 
-        fond.create_text(350, 190, text = mots_choisis, fill = couleurs_choisies, font=("Sitka Small", "15", "bold"))  
+        fond.create_text(350, 190, text = mots_choisis, fill = couleurs_choisies, font=("Sitka Small", "20", "bold"))  
 
     if NIVEAU == 2 :
+        
+        pos_mot = 0
+        placement_mots = 700 // var_couleurs
+        pos_mot = pos_mot - placement_mots/2
 
-        
-        
         for i in range(var_couleurs, 0, -1) :
 
+            pos_mot = pos_mot + placement_mots
             i = i-1
-            fond.create_text(placement_mots ,190, text = mots_choisis[i], fill = couleurs_choisies[i], font = ("Sitka Small", "15", "bold"))
+            fond.create_text(pos_mot ,150, text = mots_choisis[i], fill = couleurs_choisies[i], font = ("Sitka Small", "15", "bold"))
 
 
 print(var_couleurs)
 
 
 fct_placement()
+
 
 
 #####Never Gonna Give You Up
