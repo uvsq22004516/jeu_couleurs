@@ -21,6 +21,7 @@
 ################## import des librairies ##############################################################
 import tkinter as tk
 import random as rd
+import time
 
 
 ################## définition des variables globales / constantes #####################################
@@ -141,7 +142,8 @@ elif NIVEAU == 2:
 
 ################## définition des fonctions ###########################################################
 def start():
-    pass
+    fct_placement()
+  
 
 def reset():
     pass
@@ -182,7 +184,6 @@ def fct_couleurs() :
 
     return(couleurs_choisies)    
 
-fct_couleurs()
          
 
 
@@ -219,7 +220,7 @@ def fct_mots() :
             
     return(mots_choisis)
 
-fct_mots()
+
 
 ################## définition des widgets #############################################################
 fond = tk.Canvas(jeu, width = LARGEUR, height = HAUTEUR, bg = "gray85")
@@ -227,7 +228,7 @@ fond = tk.Canvas(jeu, width = LARGEUR, height = HAUTEUR, bg = "gray85")
 ###règle, score et chronomètre:
 fond.create_text(LARGEUR//2, 20, text="Tapez la couleur des mots, et pas le texte des mots!!!", font=("Comic Sans MS", "10"))
 fond.create_text(LARGEUR//2, 35, text="Score : 0", font=("Comic Sans MS", "10"))
-fond.create_text(LARGEUR//2, 50, text="Temps restant : 30", font=("Comic Sans MS", "10"))
+fond.create_text(LARGEUR//2, 50, text="Le temps restant est de (inserer fonction) s", font=("Comic Sans MS", "10"))
 
 
 btn_demarrer = tk.Button(jeu, text="Démarrer", command=start, font=("Comic Sans MS", "10"), relief="groove", bd=5, bg="gainsboro", padx=18)
@@ -256,6 +257,11 @@ txt_btn_blanc = fond.create_text(((400+475)/2, (350+390)/2), text="Blanc", font=
 
 def fct_placement() :
 
+    global activation
+    activation = 0
+
+    fct_mots()
+    fct_couleurs()
    
     if NIVEAU == 1 :
 
@@ -271,13 +277,15 @@ def fct_placement() :
 
             pos_mot = pos_mot + placement_mots
             i = i-1
-            fond.create_text(pos_mot ,150, text = mots_choisis[i], fill = couleurs_choisies[i], font = ("Sitka Small", "15", "bold"))
+            fond.create_text(pos_mot ,150, text = mots_choisis[i], fill = couleurs_choisies[i], font = ("Sitka Small", "20", "bold"))
 
 
-print(var_couleurs)
 
 
-fct_placement()
+def fct_delete_mots() :
+    pass
+
+
 
 
 
