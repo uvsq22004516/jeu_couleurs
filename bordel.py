@@ -11,3 +11,5 @@ can.pack()
 can.create_image(400, 300, image=background_img)
 
 window.mainloop()
+
+
