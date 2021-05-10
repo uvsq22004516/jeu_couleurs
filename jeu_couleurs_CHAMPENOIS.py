@@ -141,9 +141,17 @@ elif NIVEAU == 2:
     jeu.title("Jeu de couleurs - Niveau 2")
 
 ################## définition des fonctions ###########################################################
+temps = 30
+
 def start():
     fct_placement()
-  
+    while temps > 0 :
+        temps = temps-1
+        time.sleep(1.0)
+
+    
+    
+    print(temps)
 
 def reset():
     pass
@@ -220,7 +228,7 @@ def fct_mots() :
             
     return(mots_choisis)
 
-
+temps = [5]
 
 ################## définition des widgets #############################################################
 fond = tk.Canvas(jeu, width = LARGEUR, height = HAUTEUR, bg = "gray85")
@@ -228,7 +236,7 @@ fond = tk.Canvas(jeu, width = LARGEUR, height = HAUTEUR, bg = "gray85")
 ###règle, score et chronomètre:
 fond.create_text(LARGEUR//2, 20, text="Tapez la couleur des mots, et pas le texte des mots!!!", font=("Comic Sans MS", "10"))
 fond.create_text(LARGEUR//2, 35, text="Score : 0", font=("Comic Sans MS", "10"))
-fond.create_text(LARGEUR//2, 50, text="Le temps restant est de (inserer fonction) s", font=("Comic Sans MS", "10"))
+fond.create_text(LARGEUR//2, 50, text = "ca me fait vraiment chier ce code", font=("Comic Sans MS", "10"))
 
 
 btn_demarrer = tk.Button(jeu, text="Démarrer", command=start, font=("Comic Sans MS", "10"), relief="groove", bd=5, bg="gainsboro", padx=18)
