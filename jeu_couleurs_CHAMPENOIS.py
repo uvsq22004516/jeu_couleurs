@@ -21,12 +21,14 @@
 ################## import des librairies ##############################################################
 import tkinter as tk
 import random as rd
+import time
+
 
 ################## définition des variables globales / constantes #####################################
 LARGEUR = 700
 HAUTEUR = 450
 NIVEAU = 0
-var_couleurs = rd.randint(1, 7)
+var_couleurs = rd.randint(2, 6)
 
 ### A SUPPRIMER PLUS TARD
 #SUPER DIFFICILE POULOULOU
@@ -40,6 +42,7 @@ blanc = "snow"
 
 couleurs = [rouge, bleu, vert, rose, orange, jaune, blanc]
 
+mots = ["Rouge", "Bleu", "Vert", "Rose", "Orange", "Jaune", "Blanc"]
 
 
 
@@ -138,8 +141,17 @@ elif NIVEAU == 2:
     jeu.title("Jeu de couleurs - Niveau 2")
 
 ################## définition des fonctions ###########################################################
+temps = 30
+
 def start():
-    pass
+    fct_placement()
+    while temps > 0 :
+        temps = temps-1
+        time.sleep(1.0)
+
+    
+    
+    print(temps)
 
 def reset():
     pass
@@ -169,6 +181,7 @@ def fct_couleurs() :
                 rd.shuffle(couleurs)
                 couleurs_choisies.append(couleurs[i])
                 couleurs.remove(couleurs[i])
+                
             return(var_couleurs)
 
         else :
@@ -178,12 +191,13 @@ def fct_couleurs() :
             return(var_couleurs)
 
     return(couleurs_choisies)    
+
          
 
 
 #Definition Variables pour la fonction mots
 
-mots = ["Rouge", "Bleu", "Vert", "Rose", "Orange", "Jaune", "Blanc"]
+
 
 
 def fct_mots() :
@@ -200,7 +214,6 @@ def fct_mots() :
 
         if var_couleurs < 7 :
 
-            
 
             for i in range(var_couleurs, 0, -1) :
                 rd.shuffle(mots)
@@ -215,6 +228,7 @@ def fct_mots() :
             
     return(mots_choisis)
 
+temps = [5]
 
 ################## définition des widgets #############################################################
 fond = tk.Canvas(jeu, width = LARGEUR, height = HAUTEUR, bg = "gray85")
@@ -222,7 +236,7 @@ fond = tk.Canvas(jeu, width = LARGEUR, height = HAUTEUR, bg = "gray85")
 ###règle, score et chronomètre:
 fond.create_text(LARGEUR//2, 20, text="Tapez la couleur des mots, et pas le texte des mots!!!", font=("Comic Sans MS", "10"))
 fond.create_text(LARGEUR//2, 35, text="Score : 0", font=("Comic Sans MS", "10"))
-fond.create_text(LARGEUR//2, 50, text="Temps restant : 30", font=("Comic Sans MS", "10"))
+fond.create_text(LARGEUR//2, 50, text = "ca me fait vraiment chier ce code", font=("Comic Sans MS", "10"))
 
 
 btn_demarrer = tk.Button(jeu, text="Démarrer", command=start, font=("Comic Sans MS", "10"), relief="groove", bd=5, bg="gainsboro", padx=18)
@@ -244,6 +258,52 @@ txt_btn_jaune = fond.create_text(((225+300)/2, (350+390)/2), text="Jaune", font=
 btn_blanc = fond.create_rectangle((400, 350), (475, 390), fill="snow", outline="snow")
 txt_btn_blanc = fond.create_text(((400+475)/2, (350+390)/2), text="Blanc", font=("Arial", "10", "bold"))
 
+
+######################## Placement des mots 
+
+
+
+def fct_placement() :
+
+    global activation
+    activation = 0
+
+    fct_mots()
+    fct_couleurs()
+   
+    if NIVEAU == 1 :
+
+        fond.create_text(350, 190, text = mots_choisis, fill = couleurs_choisies, font=("Sitka Small", "20", "bold"))  
+
+    if NIVEAU == 2 :
+        
+        pos_mot = 0
+        placement_mots = 700 // var_couleurs
+        pos_mot = pos_mot - placement_mots/2
+
+        for i in range(var_couleurs, 0, -1) :
+
+            pos_mot = pos_mot + placement_mots
+            i = i-1
+            fond.create_text(pos_mot ,150, text = mots_choisis[i], fill = couleurs_choisies[i], font = ("Sitka Small", "20", "bold"))
+
+
+
+
+def fct_delete_mots() :
+    pass
+
+
+
+
+
+#####Never Gonna Give You Up
+
+
+
+
+
+
 ################## événements liés aux widgets et appel à la boucle de gestion des événements #########
 
 btn_demarrer.grid(row=4, column=0)
@@ -253,3 +313,5 @@ fond.grid(row=0, rowspan= 5, columnspan=6)
 
 
 jeu.mainloop()
+
+
