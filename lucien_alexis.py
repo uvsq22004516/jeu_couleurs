@@ -146,7 +146,8 @@ def reset():
     global decompte
     score = 0
     decompte = 30
-    start()
+    btn_demarrer = tk.Button(jeu, text="Démarrer", command=start, font=("Comic Sans MS", "10"), relief="groove", bd=5, bg="gainsboro", padx=18)
+    ##effacer le texte
 
 
 def fct_couleurs() :
