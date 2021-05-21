@@ -234,70 +234,147 @@ def fct_mots() :
             
     return(mots_choisis)
 
-def clique(event):
-    couleur_clique = []
-    if len(couleur_clique) < len(couleurs_choisies):
-        if 100 <= event.x <= 175 and 285 <= event.y <= 325 :
-            if "firebrick2" in couleurs_choisies : 
-                couleur_clique.append("Rouge")
-            else :
-                couleur_clique.append("faux")
-        elif 206.25 <= event.x <= 281.25 and 285 <= event.y <= 325 :
-            if "deep sky blue" in couleurs_choisies : 
-                couleur_clique.append("Bleu")
-            else :
-                couleur_clique.append("faux")
-        elif 312.5 <= event.x <= 387.5 and 285 <= event.y <=325  :
-            if "forest green" in couleurs_choisies :
-                couleur_clique.append("Vert")
-            else :
-                couleur_clique.append("faux")
-        elif 418.75 <= event.x <= 493.75 and 285 <= event.y <= 325 :
-            if "HotPink1" in couleurs_choisies :
-                couleur_clique.append("Rose")
-            else :
-                couleur_clique.append("faux")
-        elif 525 <= event.x <= 600 and 285 <= event.y <= 325 :
-            if "dark orange" in couleurs_choisies :
-                couleur_clique.append("Orange")
-            else :
-                couleur_clique.append("faux")
-        elif 225 <= event.x <= 300 and 350 <= event.y <= 390 :
-            if "goldenrod2" in couleurs_choisies :
-                couleur_clique.append("Jaune")
-            else :
-                couleur_clique.append("faux")
-        elif 400 <= event.x <= 475 and 350 <= event.y <= 390 :
-            if "snow" in couleurs_choisies :
-                couleur_clique.append("Blanc")
-            else :
-                couleur_clique.append("faux")
+score_tot = 0
+
+def compte_point_nv1():
+
+    global score_tot
+
+
+    if str(couleur_clique) in couleurs_choisies:
+        score_tot = score + 1
+        print("1")
+
     else : 
-        compte_de_point()
-    print(score)
-    print(couleur_clique)
+        print("0")
+        
+
+    print(score_tot)
     print(couleurs_choisies)
- 
+    print(couleur_clique)
+
+
+
+def clique(event):
+
+
+
+    if NIVEAU == 1:
+
+        if len(couleur_clique) == 0 :
+
+            if 100 <= event.x <= 175 and 285 <= event.y <= 325 :
+                "firebrick2" in couleurs_choisies
+                couleur_clique.append("firebrick2")
+
+            elif 206.25 <= event.x <= 281.25 and 285 <= event.y <= 325 :
+                "deep sky blue" in couleurs_choisies  
+                couleur_clique.append("deep sky blue")
+                
+            elif 312.5 <= event.x <= 387.5 and 285 <= event.y <=325  :
+                "forest green" in couleurs_choisies 
+                couleur_clique.append("forest green")
+                
+            elif 418.75 <= event.x <= 493.75 and 285 <= event.y <= 325 :
+                "HotPink1" in couleurs_choisies 
+                couleur_clique.append("HotPink1")
+                
+            elif 525 <= event.x <= 600 and 285 <= event.y <= 325 :
+                "dark orange" in couleurs_choisies 
+                couleur_clique.append("dark orange")
+            
+            elif 225 <= event.x <= 300 and 350 <= event.y <= 390 :
+                "goldenrod2" in couleurs_choisies 
+                couleur_clique.append("goldenrod2")
+            
+            elif 400 <= event.x <= 475 and 350 <= event.y <= 390 :
+                "snow" in couleurs_choisies 
+                couleur_clique.append("snow")
+
+        else : 
+            pass
+
+        compte_point_nv1()
+        
+
+
+    
+
+            
+    if NIVEAU == 2:
+            
+        if len(couleur_clique) < len(couleurs_choisies):
+            if 100 <= event.x <= 175 and 285 <= event.y <= 325 :
+                if "firebrick2" in couleurs_choisies : 
+                    couleur_clique.append("Rouge")
+                else :
+                    couleur_clique.append("faux")
+            elif 206.25 <= event.x <= 281.25 and 285 <= event.y <= 325 :
+                if "deep sky blue" in couleurs_choisies : 
+                    couleur_clique.append("Bleu")
+                else :
+                    couleur_clique.append("faux")
+            elif 312.5 <= event.x <= 387.5 and 285 <= event.y <=325  :
+                if "forest green" in couleurs_choisies :
+                    couleur_clique.append("Vert")
+                else :
+                    couleur_clique.append("faux")
+            elif 418.75 <= event.x <= 493.75 and 285 <= event.y <= 325 :
+                if "HotPink1" in couleurs_choisies :
+                    couleur_clique.append("Rose")
+                else :
+                    couleur_clique.append("faux")
+            elif 525 <= event.x <= 600 and 285 <= event.y <= 325 :
+                if "dark orange" in couleurs_choisies :
+                    couleur_clique.append("Orange")
+                else :
+                    couleur_clique.append("faux")
+            elif 225 <= event.x <= 300 and 350 <= event.y <= 390 :
+                if "goldenrod2" in couleurs_choisies :
+                    couleur_clique.append("Jaune")
+                else :
+                    couleur_clique.append("faux")
+            elif 400 <= event.x <= 475 and 350 <= event.y <= 390 :
+                if "snow" in couleurs_choisies :
+                    couleur_clique.append("Blanc")
+                else :
+                    couleur_clique.append("faux")
+        
+        
+
+        if len(couleur_clique) == len(couleurs_choisies):
+            compte_de_point()
+
+
+
+        print(couleur_clique)
+        print(couleurs_choisies)
+    
 def compte_de_point() :
+
     global score
+    global score_tot
     if "faux" in couleur_clique:
-        score = score
-    elif couleur_clique.count("Rouge")>=1 :
-        score = score
-    elif couleur_clique.count("Bleu")>=1 :
-        score = score
-    elif couleur_clique.count("Vert")>=1 :
-        score = score
-    elif couleur_clique.count("Rose")>=1 :
-        score = score
-    elif couleur_clique.count("Orange")>=1 :
-        score = score
-    elif couleur_clique.count("Jaune")>=1 :
-        score = score
-    elif couleur_clique.count("Blanc")>=1 :
-        score = score
+        score_tot = score
+    elif couleur_clique.count("Rouge")>1 :
+        score_tot = score
+    elif couleur_clique.count("Bleu")>1 :
+        score_tot = score
+    elif couleur_clique.count("Vert")>1 :
+        score_tot = score
+    elif couleur_clique.count("Rose")>1 :
+        score_tot = score
+    elif couleur_clique.count("Orange")>1 :
+        score_tot = score
+    elif couleur_clique.count("Jaune")>1 :
+        score_tot = score
+    elif couleur_clique.count("Blanc")>1 :
+        score_tot = score
     else :
-        score = score + 1
+        score_tot = score + 1
+
+    print(score_tot)
+
 
 
 ################## définition des widgets #############################################################
@@ -335,8 +412,6 @@ txt_btn_blanc = fond.create_text(((400+475)/2, (350+390)/2), text="Blanc", font=
 
 def fct_placement() :
 
-    global activation
-    activation = 0
 
     fct_mots()
     fct_couleurs()
