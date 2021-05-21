@@ -28,7 +28,6 @@ LARGEUR = 700
 HAUTEUR = 450
 NIVEAU = 0
 var_couleurs = rd.randint(2, 6)
-score = 0
 
 ### A SUPPRIMER PLUS TARD
 #SUPER DIFFICILE POULOULOU
@@ -154,10 +153,11 @@ def decompte() :
 
 def start():
     global score 
-    score = 0
+    score = int(0)
     global couleur_clique 
     couleur_clique= []
     fct_placement()
+    jeu.bind("<Button-1>", clique)
 
 def reset():
     pass
@@ -234,11 +234,9 @@ def fct_mots() :
             
     return(mots_choisis)
 
-score = 0
-
 def clique(event):
     couleur_clique = []
-    if len(couleur_clique) != len(couleurs_choisies):
+    while len(couleur_clique) < len(couleurs_choisies):
         if 100 <= event.x <= 175 and 285 <= event.y <= 325 :
             if "firebrick2" in couleurs_choisies : 
                 couleur_clique.append("Rouge")
@@ -274,34 +272,33 @@ def clique(event):
                 couleur_clique.append("Blanc")
             else :
                 couleur_clique.append("faux")
-        print(couleur_clique)
-
     else : 
-        pass
-
-    if "faux" in couleur_clique:
-        pass
-    elif couleur_clique.count("Rouge")>1 :
-        pass
-    elif couleur_clique.count("Bleu")>1 :
-        pass
-    elif couleur_clique.count("Vert")>1 :
-        pass
-    elif couleur_clique.count("Rose")>1 :
-        pass
-    elif couleur_clique.count("Orange")>1 :
-        pass
-    elif couleur_clique.count("Jaune")>1 :
-        pass
-    elif couleur_clique.count("Blanc")>1 :
-        pass
-    else :
-        score = score + 1
-
+        compte_de_point()
     print(score)
     print(couleur_clique)
     print(couleurs_choisies)
  
+def compte_de_point() :
+    global score
+    if "faux" in couleur_clique:
+        score = score
+    elif couleur_clique.count("Rouge")>=1 :
+        score = score
+    elif couleur_clique.count("Bleu")>=1 :
+        score = score
+    elif couleur_clique.count("Vert")>=1 :
+        score = score
+    elif couleur_clique.count("Rose")>=1 :
+        score = score
+    elif couleur_clique.count("Orange")>=1 :
+        score = score
+    elif couleur_clique.count("Jaune")>=1 :
+        score = score
+    elif couleur_clique.count("Blanc")>=1 :
+        score = score
+    else :
+        score = score + 1
+
 
 ################## définition des widgets #############################################################
 fond = tk.Canvas(jeu, width = LARGEUR, height = HAUTEUR, bg = "gray85")
@@ -359,7 +356,7 @@ def fct_placement() :
             pos_mot = pos_mot + placement_mots
             i = i-1
             fond.create_text(pos_mot ,150, text = mots_choisis[i], fill = couleurs_choisies[i], font = ("Sitka Small", "20", "bold"))
-    jeu.bind("<Button-1>", clique)
+
 
 
 
