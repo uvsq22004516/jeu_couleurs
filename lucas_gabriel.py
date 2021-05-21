@@ -236,7 +236,7 @@ def fct_mots() :
 
 def clique(event):
     couleur_clique = []
-    while len(couleur_clique) < len(couleurs_choisies):
+    if len(couleur_clique) < len(couleurs_choisies):
         if 100 <= event.x <= 175 and 285 <= event.y <= 325 :
             if "firebrick2" in couleurs_choisies : 
                 couleur_clique.append("Rouge")
