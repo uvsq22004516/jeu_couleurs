@@ -153,6 +153,8 @@ def decompte() :
 
 
 def start():
+    global score 
+    score = 0
     global couleur_clique 
     couleur_clique= []
     fct_placement()
@@ -232,9 +234,11 @@ def fct_mots() :
             
     return(mots_choisis)
 
+score = 0
+
 def clique(event):
-    score = 0
-    while len(couleur_clique) != len(couleurs_choisies):
+    couleur_clique = []
+    if len(couleur_clique) != len(couleurs_choisies):
         if 100 <= event.x <= 175 and 285 <= event.y <= 325 :
             if "firebrick2" in couleurs_choisies : 
                 couleur_clique.append("Rouge")
@@ -270,11 +274,31 @@ def clique(event):
                 couleur_clique.append("Blanc")
             else :
                 couleur_clique.append("faux")
-    if "faux" in couleur_clique:
-        score = score
-    else :
-        score += 1
+        print(couleur_clique)
 
+    else : 
+        pass
+
+    if "faux" in couleur_clique:
+        pass
+    elif couleur_clique.count("Rouge")>1 :
+        pass
+    elif couleur_clique.count("Bleu")>1 :
+        pass
+    elif couleur_clique.count("Vert")>1 :
+        pass
+    elif couleur_clique.count("Rose")>1 :
+        pass
+    elif couleur_clique.count("Orange")>1 :
+        pass
+    elif couleur_clique.count("Jaune")>1 :
+        pass
+    elif couleur_clique.count("Blanc")>1 :
+        pass
+    else :
+        score = score + 1
+
+    print(score)
     print(couleur_clique)
     print(couleurs_choisies)
  
