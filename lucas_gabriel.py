@@ -153,10 +153,9 @@ def decompte() :
 
 
 def start():
+    global couleur_clique 
+    couleur_clique= []
     fct_placement()
-    clique()
-
-
 
 def reset():
     pass
@@ -233,39 +232,52 @@ def fct_mots() :
             
     return(mots_choisis)
 
-
 def clique(event):
+    score = 0
+    while len(couleur_clique) != len(couleurs_choisies):
+        if 100 <= event.x <= 175 and 285 <= event.y <= 325 :
+            if "firebrick2" in couleurs_choisies : 
+                couleur_clique.append("Rouge")
+            else :
+                couleur_clique.append("faux")
+        elif 206.25 <= event.x <= 281.25 and 285 <= event.y <= 325 :
+            if "deep sky blue" in couleurs_choisies : 
+                couleur_clique.append("Bleu")
+            else :
+                couleur_clique.append("faux")
+        elif 312.5 <= event.x <= 387.5 and 285 <= event.y <=325  :
+            if "forest green" in couleurs_choisies :
+                couleur_clique.append("Vert")
+            else :
+                couleur_clique.append("faux")
+        elif 418.75 <= event.x <= 493.75 and 285 <= event.y <= 325 :
+            if "HotPink1" in couleurs_choisies :
+                couleur_clique.append("Rose")
+            else :
+                couleur_clique.append("faux")
+        elif 525 <= event.x <= 600 and 285 <= event.y <= 325 :
+            if "dark orange" in couleurs_choisies :
+                couleur_clique.append("Orange")
+            else :
+                couleur_clique.append("faux")
+        elif 225 <= event.x <= 300 and 350 <= event.y <= 390 :
+            if "goldenrod2" in couleurs_choisies :
+                couleur_clique.append("Jaune")
+            else :
+                couleur_clique.append("faux")
+        elif 400 <= event.x <= 475 and 350 <= event.y <= 390 :
+            if "snow" in couleurs_choisies :
+                couleur_clique.append("Blanc")
+            else :
+                couleur_clique.append("faux")
+    if "faux" in couleur_clique:
+        score = score
+    else :
+        score += 1
 
-    global couleur_clique 
-    couleur_clique= []
-    
-    clique=[]
-
-    x=event.x
-    y=event.y
-
-    clique = [x, y]
-
-    print(clique)
-
-    for i in range(couleurs_choisies) :  
-        if tk.Event.x == (100, 285) and tk.Event.y == (175, 325):
-            couleur_clique.append("Rouge")
-        elif tk.Event.x == (206.25, 285) and tk.Event.y == (281.25,325) :
-            couleur_clique.append("Bleu")
-        elif tk.Event.x == (312.5, 285) and tk.Event.y == (387.5, 325) :
-            couleur_clique.append("Vert")
-        elif tk.Event.x == (418.75, 285) and tk.Event.y == (493.75, 325) :
-            couleur_clique.append("Rose")
-        elif tk.Event.x == (525, 285) and tk.Event.y == (600, 325) :
-            couleur_clique.append("Orange")
-        elif tk.Event.x == (225, 350) and tk.Event.y == (300, 390) :
-            couleur_clique.append("Jaune")
-        elif tk.Event.x == (400, 350) and tk.Event.y == (475, 390) :
-            couleur_clique.append("Blanc")
-        else : 
-            i = i-1
     print(couleur_clique)
+    print(couleurs_choisies)
+ 
 
 ################## définition des widgets #############################################################
 fond = tk.Canvas(jeu, width = LARGEUR, height = HAUTEUR, bg = "gray85")
@@ -307,7 +319,7 @@ def fct_placement() :
 
     fct_mots()
     fct_couleurs()
-   
+
     if NIVEAU == 1 :
 
         fond.create_text(350, 190, text = mots_choisis, fill = couleurs_choisies, font=("Sitka Small", "20", "bold"))  
@@ -323,7 +335,7 @@ def fct_placement() :
             pos_mot = pos_mot + placement_mots
             i = i-1
             fond.create_text(pos_mot ,150, text = mots_choisis[i], fill = couleurs_choisies[i], font = ("Sitka Small", "20", "bold"))
-
+    jeu.bind("<Button-1>", clique)
 
 
 
