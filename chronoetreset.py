@@ -463,3 +463,4 @@ fond.bind("<Button-1>", clique)
 fond.bind("<Button-2>", clique_easter)
 
 jeu.mainloop()
+
