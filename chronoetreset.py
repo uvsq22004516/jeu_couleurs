@@ -279,7 +279,7 @@ def clique(event):
     if NIVEAU == 2:
 
         if len(couleur_clique) < len(couleurs_choisies):
-            if 100 <= event.x <= 175 and 285 <= event.y <= 325 :
+            if 100 <= event.x <= 175 and 285 <= event.y <= 325:
                 couleur_clique.append("firebrick2")
             elif 206.25 <= event.x <= 281.25 and 285 <= event.y <= 325 :
                 couleur_clique.append("deep sky blue")
