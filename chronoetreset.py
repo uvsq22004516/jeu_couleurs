@@ -444,13 +444,13 @@ txt_btn_blanc = fond.create_text(((400+475)/2, (350+390)/2), text="Blanc", font=
 
 ################## Easter Egg :
 
-
-def clique_easter(event):
+def clique_easter(evente):
 
     """Quand on clique sur un certain carré cela fait apparaître un easter egg très sympa ! """
 
-    if 300 <= event.x <= 400 and 0 <= event.y <= 15 :
+    if 300 <= evente.x <= 400 and 0 <= evente.y <= 15 :
         wb.open("https://youtu.be/dQw4w9WgXcQ", autoraise = True)
+
 
 ################## Evénements liés aux widgets et appel à la boucle de gestion des événements :
 
@@ -460,6 +460,6 @@ btn_reinitialiser.grid(row=4, column=5)
 fond.grid(row=0, rowspan= 5, columnspan=6)
 
 fond.bind("<Button-1>", clique)
-fond.bind("<Button-1>", clique_easter)
+fond.bind("<Button-3>", clique_easter)
 
 jeu.mainloop()
