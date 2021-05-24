@@ -29,7 +29,7 @@ Une fois arrivé sur un des niveaux vous pourrez commencer à jouer en appuyant 
 
 # Easter Egg :
 
-Et en bonus, comme tous bons "développeurs" qui se respectent, nous avons caché un petit easter egg dans l'interface, à vous de le trouver pour en profiter !
+Et en bonus, comme tous bons "développeurs" qui se respectent, nous avons caché un petit easter egg dans l'interface, à vous de le trouver pour en profiter, c'est une réference pour la double licence !
 
 
 
