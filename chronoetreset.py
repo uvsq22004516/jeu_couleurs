@@ -179,13 +179,15 @@ def reset():
     """Réinitialise le score et le chronomètre sans 
     relancer automatiquement de nouvelle partie ni stocker le score de la partie non terminée"""
     global var_demarrer, temps, score
-    var_demarrer = False
+    fct_mots()
+    fct_couleurs()
     score = 0
     fond.itemconfigure(score_partie, text="Score : " + str(score))
     temps = 30
     fond.itemconfigure(tps_de_jeu, text="Temps restant : " + str(temps))
     fond.after_cancel(boucle_temps)
     fond.delete("textes")
+    fct_placement()
 
     
         
@@ -196,6 +198,7 @@ def reset():
 def fct_couleurs() :
     """Pour un tour, cette fonction choisit aléatoirement la couleur d'affichage des mots"""
     global var_couleurs, couleurs, couleurs_choisies
+
 
     if NIVEAU == 1 :
         rd.shuffle(couleurs)
@@ -209,6 +212,8 @@ def fct_couleurs() :
                 couleurs.remove(couleurs[i])
         return(var_couleurs)
 
+
+    
     return(couleurs_choisies)    
 ############################################################
 
@@ -218,7 +223,7 @@ def fct_couleurs() :
 def fct_mots() :
     """Pour un tour, cette fonction choisit aléatoirement les mots qui s'affichent"""
     global mots_choisis
-
+    mots = ["Rouge", "Bleu", "Vert", "Rose", "Orange", "Jaune", "Blanc"]
     if NIVEAU == 1 :
         rd.shuffle(mots)
         mots_choisis = mots[1]
@@ -229,7 +234,8 @@ def fct_mots() :
                 rd.shuffle(mots)
                 mots_choisis.append(mots[i])
                 mots.remove(mots[i])
-            
+    
+    
     return(mots_choisis)
 ########################################################
 
@@ -239,7 +245,9 @@ def fct_mots() :
 def fct_placement() :
     """Place le(s) mot(s) aléatoirement dans les emplacements définis dans la fonction"""
 
-    global var_demarrer
+    global var_demarrer, mots, couleurs
+    
+    
 
     if var_demarrer == True:
         fct_mots()
@@ -249,6 +257,9 @@ def fct_placement() :
             fond.create_text(350, 190, text = mots_choisis, fill = couleurs_choisies, font=("Sitka Small", "20", "bold"), tag = "textes")
 
         if NIVEAU == 2 :
+            mots = ["Rouge", "Bleu", "Vert", "Rose", "Orange", "Jaune", "Blanc"]
+            couleurs = ["firebrick2", "deep sky blue", "forest green", "HotPink1", "dark orange", "goldenrod2", "snow"]
+
             pos_mot = 0
             placement_mots = 700 // var_couleurs
             pos_mot = pos_mot - placement_mots/2
@@ -262,26 +273,17 @@ def fct_placement() :
 
 
 
-#############################################
-
-
-def fct_delete_mots() :
-    """Supprime l'affichage actuel des mots et couleurs"""
-    pass
-
-
-
 ######################## Incrémentation du score:
 def compte_point_niv1():
     """Incrémente le score de 1 si la bonne couleur est choisie"""
     global score_tot
     if couleurs_choisies in couleur_clique[0]:
-        score_tot = score + 1
+        score_tot +=  1
 
     else : 
         pass
     
-    
+
     print(couleurs_choisies)
     print(couleur_clique[0])
     print(score_tot)
@@ -308,7 +310,7 @@ def compte_point_niv2() :
     elif couleur_clique.count("Blanc")>1 :
         score_tot = score
     else :
-        score_tot = score + 1
+        score_tot += 1
 
     print(score_tot)
 
@@ -361,13 +363,16 @@ def clique(event):
                 
 
         else : 
-            pass
+            compte_point_niv1()
+            fond.delete("textes")
+            fct_placement()
 
-        compte_point_niv1()
+        
+
     
           
     if NIVEAU == 2:
-            
+
         if len(couleur_clique) < len(couleurs_choisies):
             if 100 <= event.x <= 175 and 285 <= event.y <= 325 :
                 if "firebrick2" in couleurs_choisies : 
@@ -409,9 +414,12 @@ def clique(event):
         if len(couleur_clique) == len(couleurs_choisies):
             compte_point_niv2()
             fond.delete("textes")
+            fct_placement()
             
+   
         print(couleur_clique)
         print(couleurs_choisies)
+        
 
 ######################## Passage au tour suivant:
 def tour_suivant():
