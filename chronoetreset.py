@@ -171,6 +171,7 @@ def start():
     """Déclenche le chronomètre et l'affichage aléatoire de mots et couleurs"""
     global score, couleur_clique, fond, var_demarrer
     chrono()
+ 
     fct_placement()
     fond.bind("<Button-1>", clique)
 
@@ -184,6 +185,10 @@ def reset():
     temps = 30
     fond.itemconfigure(tps_de_jeu, text="Temps restant : " + str(temps))
     fond.after_cancel(boucle_temps)
+    fond.delete("textes")
+
+    
+        
 #############################################
 
 
@@ -228,18 +233,20 @@ def fct_mots() :
     return(mots_choisis)
 ########################################################
 
-
-
 ######################## Placement des mots :
+
+
 def fct_placement() :
     """Place le(s) mot(s) aléatoirement dans les emplacements définis dans la fonction"""
+
     global var_demarrer
+
     if var_demarrer == True:
         fct_mots()
         fct_couleurs()
 
         if NIVEAU == 1 :
-            fond.create_text(350, 190, text = mots_choisis, fill = couleurs_choisies, font=("Sitka Small", "20", "bold"))  
+            fond.create_text(350, 190, text = mots_choisis, fill = couleurs_choisies, font=("Sitka Small", "20", "bold"), tag = "textes")
 
         if NIVEAU == 2 :
             pos_mot = 0
@@ -249,10 +256,12 @@ def fct_placement() :
             for i in range(var_couleurs, 0, -1) :
                 pos_mot = pos_mot + placement_mots
                 i -=1
-                fond.create_text(pos_mot ,150, text = mots_choisis[i], fill = couleurs_choisies[i], font = ("Sitka Small", "20", "bold"))
-    
-    else:
-        pass
+                fond.create_text(pos_mot ,150, text = mots_choisis[i], fill = couleurs_choisies[i], font = ("Sitka Small", "20", "bold"), tag = "textes")
+
+
+
+
+
 #############################################
 
 
@@ -271,7 +280,8 @@ def compte_point_niv1():
 
     else : 
         pass
-
+    
+    
     print(couleurs_choisies)
     print(couleur_clique[0])
     print(score_tot)
@@ -302,7 +312,11 @@ def compte_point_niv2() :
 
     print(score_tot)
 
-#################################################
+############  Fonction meilleur score
+
+
+
+
 
 
 def clique(event):
@@ -348,8 +362,9 @@ def clique(event):
 
         else : 
             pass
+
         compte_point_niv1()
-        
+    
           
     if NIVEAU == 2:
             
@@ -393,7 +408,8 @@ def clique(event):
         
         if len(couleur_clique) == len(couleurs_choisies):
             compte_point_niv2()
-
+            fond.delete("textes")
+            
         print(couleur_clique)
         print(couleurs_choisies)
 
@@ -412,7 +428,7 @@ def tour_suivant():
             mots_choisis = []
             fct_placement()
             
-    
+
 ################## définition des widgets #############################################################
 fond = tk.Canvas(jeu, width = LARGEUR, height = HAUTEUR, bg = "gray85")
 
