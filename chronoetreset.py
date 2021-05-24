@@ -14,16 +14,20 @@
 #######################################################################################################
 ################## Fonctionnement du programme ########################################################
 
-
+"""Voir README"""
  
 #######################################################################################################
 
-################## import des librairies ##############################################################
+################## Import des librairies ##############################################################
+
+
 import tkinter as tk
 import random as rd
+import webbrowser as wb
 
 
-################## définition des variables globales / constantes #####################################
+################## Définition des variables globales / constantes :
+
 LARGEUR = 700
 HAUTEUR = 450
 
@@ -39,7 +43,8 @@ boucle_temps=0 #variable pour l'appel régulier de la fonction chrono()
 var_couleurs = rd.randint(2, 6) #variable aléatoire donnant le nombre de mots et donc de couleurs à afficher dans le niveau2
 
 
-################## Couleurs
+############### Couleurs :
+
 """
 rouge = "firebrick2"
 bleu = "deep sky blue"
@@ -60,7 +65,7 @@ mots_choisis = [] ##liste contenant les mots choisis aléatoirement (donc au niv
 
 
 #######################################################################################################
-################## MENU PRINCIPAL #####################################################################
+######################################  MENU PRINCIPAL  ###############################################
 #######################################################################################################
 menu_principal = tk.Tk()
 menu_principal.title("Jeu de couleurs (IN200 - projet n°2 - DLMP 5)")
@@ -99,10 +104,14 @@ def règles_du_jeu():
     bouton_retour.grid()
     règles_du_jeu_root.mainloop()
 
-################## définition et placement des widgets #############################################################
+
+
+
+
+############### Définition et placement des widgets :
 canvas = tk.Canvas(menu_principal, width = LARGEUR, height = HAUTEUR, bg = "gray85")
 
-################## cadre:
+############### Cadre :
 couleurs.reverse()
 for i in range(0, len(couleurs)):
     canvas.create_line(((LARGEUR/7)*i, HAUTEUR-15),((LARGEUR/7)*(i+1), HAUTEUR-15), fill=couleurs[i], width=30)
@@ -114,7 +123,9 @@ for i in range(0, len(couleurs)):
     canvas.create_line(((LARGEUR/7)*i, 15),((LARGEUR/7)*(i+1), 15), fill=couleurs[i], width=30)
 for i in range(0, len(couleurs)):
     canvas.create_line((15, (HAUTEUR/7)*i),(15, (HAUTEUR/7)*(i+1)), fill=couleurs[i], width=30)
-#########################
+
+
+############### Création des boutons du menu principal :
 
 canvas.create_text((LARGEUR/2, HAUTEUR/6), text="JEU DE COULEURS", font=("Comic Sans MS", "20", "bold"))
 
@@ -133,20 +144,22 @@ bouton_règles.grid(row=2, column=4)
 menu_principal.mainloop()
 
 
-
-
-
 #######################################################################################################
-################## JEU ################################################################################
+###########################################  JEU  #####################################################
 #######################################################################################################
+
+
 jeu = tk.Tk()
 if NIVEAU == 1:
     jeu.title("Jeu de couleurs - Niveau 1")
 elif NIVEAU == 2:
     jeu.title("Jeu de couleurs - Niveau 2")
 
-################## définition des fonctions ###########################################################
-################## Chronomètre:
+############### Définition des fonctions :
+
+
+
+############### Chronomètre :
 def chrono():
     """Change l'affichage du temps restant à intervalles réguliers (1 seconde)"""
     global var_demarrer, temps, boucle_temps
@@ -158,18 +171,21 @@ def chrono():
     
     else:
         var_demarrer = False        
-###############################
 
 
-################## Démarrer et réinitialiser:
+################## Démarrer et réinitialiser :
 def start():
+
     """Déclenche le chronomètre et l'affichage aléatoire de mots et couleurs"""
+
     chrono()
     fct_placement()
 
 def reset():
+
     """Réinitialise le score et le chronomètre sans 
     relancer automatiquement de nouvelle partie ni stocker le score de la partie non terminée"""
+
     global var_demarrer, temps, score_tot
     var_demarrer=False
     score_tot = 0
@@ -178,10 +194,13 @@ def reset():
     fond.itemconfigure(tps_de_jeu, text="Temps restant : " + str(temps))
     fond.after_cancel(boucle_temps)
     fond.delete("textes")        
+
 #############################################
 
 
-################## Fonction de choix aléatoire des couleurs:
+############### Fonction de choix aléatoire des couleurs :
+
+
 def fct_couleurs() :
     """Pour un tour, cette fonction choisit aléatoirement la couleur d'affichage des mots"""
     global couleurs, couleurs_choisies
@@ -195,12 +214,13 @@ def fct_couleurs() :
         for i in range(var_couleurs, -1, -1) :
                 couleurs_choisies.append(couleurs[i])
     return(couleurs_choisies)    
-############################################################
 
 
 
-################## Fonction de choix aléatoire des mots:
+############### Fonction de choix aléatoire des mots :
+
 def fct_mots() :
+
     """Pour un tour, cette fonction choisit aléatoirement les mots qui s'affichent"""
     global mots, mots_choisis
     if NIVEAU == 1 :
@@ -212,9 +232,10 @@ def fct_mots() :
         for i in range(var_couleurs, -1, -1) :  
             mots_choisis.append(mots[i])
     return(mots_choisis)
-########################################################
 
-######################## Placement des mots :
+
+############### Placement des mots :
+
 def fct_placement() :
     """Place le(s) mot(s) aléatoirement dans les emplacements définis dans la fonction"""
     global var_demarrer, mots, couleurs
@@ -233,13 +254,13 @@ def fct_placement() :
             for i in range(var_couleurs, -1, -1) :
                 pos_mot = pos_mot + placement_mots
                 fond.create_text((pos_mot ,150), text = mots_choisis[i], fill = couleurs_choisies[i], font = ("Sitka Small", "20", "bold"), tag = "textes")
-#############################################
 
 
 
-######################## Incrémentation du score:
+
+############### Incrémentation du score :
 def compte_point_niv1():
-    """Incrémente le score de 1 si la bonne couleur est choisie"""
+    """Incrémente le score de 1 si la bonne couleur est choisie par le joueur"""
     global score_tot
     if var_demarrer == True:
         if couleur_clique[0] == couleurs_choisies[0]:
@@ -276,17 +297,19 @@ def compte_point_niv2() :
 
     print(score_tot)
 
-######################## Sauvegarde des 10 meilleurs score :
+############### Sauvegarde des 10 meilleurs scores :
 def sauv_score():
     pass
-############################################################
+
 
 
 
 
 
 def clique(event):
-    """docstring"""
+    """Permet de détecter le clique de la souris et en fonction de la position cela l'assimile à un clic sur un bouton
+    Nous n'avons pas utilisé de boutons car c'était plus simple pour faire un positionnement propre"""
+
     global couleur_clique
     if NIVEAU == 1:
 
@@ -369,7 +392,7 @@ def clique(event):
         print(couleurs_choisies)
         
 
-######################## Passage au tour suivant:
+############### Passage au tour suivant :
 def tour_suivant():
     global couleurs, couleur_clique, couleurs_choisies, mots, mots_choisis
     if NIVEAU == 1:
@@ -388,12 +411,12 @@ def tour_suivant():
             mots = ["Rouge", "Bleu", "Vert", "Rose", "Orange", "Jaune", "Blanc"]
             mots_choisis = []
             fct_placement()
-            
 
-################## définition des widgets #############################################################
+
+############### Définition des widgets :
 fond = tk.Canvas(jeu, width = LARGEUR, height = HAUTEUR, bg = "gray85")
 
-################## règle, score et chronomètre:
+############### Règle, score et chronomètre :
 fond.create_text(LARGEUR//2, 20, text="Tapez la couleur des mots, et pas le texte des mots!!!", font=("Comic Sans MS", "10"))
 score_partie = fond.create_text(LARGEUR//2, 35, text="Score : " + str(score_tot), font=("Comic Sans MS", "10"))
 tps_de_jeu = fond.create_text(LARGEUR//2, 50, text = "Temps restant : " + str(temps), font=("Comic Sans MS", "10"))
@@ -402,7 +425,8 @@ tps_de_jeu = fond.create_text(LARGEUR//2, 50, text = "Temps restant : " + str(te
 btn_demarrer = tk.Button(jeu, text="Démarrer", command=start, font=("Comic Sans MS", "10"), relief="groove", bd=5, bg="gainsboro", padx=18)
 btn_reinitialiser = tk.Button(jeu, text="Réinitialiser", command=reset, font=("Comic Sans MS", "10"), relief="groove", bd=5, bg="gainsboro", padx=10)
 
-###boutons de couleurs:
+############### Boutons de couleurs :
+
 btn_rouge =  fond.create_rectangle((100, 285), (175, 325), fill="firebrick2", outline="firebrick2")
 txt_btn_rge = fond.create_text(((100+175)/2, (285+325)/2), text="Rouge", font=("Arial", "10", "bold"))
 btn_bleu =  fond.create_rectangle((206.25, 285), (281.25,325), fill="deep sky blue", outline="deep sky blue")
@@ -418,9 +442,17 @@ txt_btn_jaune = fond.create_text(((225+300)/2, (350+390)/2), text="Jaune", font=
 btn_blanc = fond.create_rectangle((400, 350), (475, 390), fill="snow", outline="snow")
 txt_btn_blanc = fond.create_text(((400+475)/2, (350+390)/2), text="Blanc", font=("Arial", "10", "bold"))
 
+################## Easter Egg :
 
 
-################## événements liés aux widgets et appel à la boucle de gestion des événements #########
+def clique_easter(event):
+
+    """Quand on clique sur un certain carré cela fait apparaître un easter egg très sympa ! """
+
+    if 300 <= event.x <= 400 and 0 <= event.y <= 15 :
+        wb.open("https://youtu.be/dQw4w9WgXcQ", autoraise = True)
+
+################## Evénements liés aux widgets et appel à la boucle de gestion des événements :
 
 btn_demarrer.grid(row=4, column=0)
 btn_reinitialiser.grid(row=4, column=5)
@@ -428,5 +460,6 @@ btn_reinitialiser.grid(row=4, column=5)
 fond.grid(row=0, rowspan= 5, columnspan=6)
 
 fond.bind("<Button-1>", clique)
+fond.bind("<Button-1>", clique_easter)
 
 jeu.mainloop()
