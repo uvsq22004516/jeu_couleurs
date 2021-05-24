@@ -1,7 +1,11 @@
 # DEUXIEME PROJET : Jeu de couleurs 
 
-test
-test3
-test4
-testlucas
+ Groupe DLMP 5
+
+BEAUSSANT Alberic 
+BODEN Alexis 
+CHAMPENOIS Gabriel 
+LEMARECHAL Lucas 
+SAVEY Lucien 
+SEDDOUGUI Djenna 
 
