@@ -16,8 +16,8 @@ Sur l'interface graphique, selon le niveau, un ou plusieurs mots désignants une
 # Explications des niveaux :
 
 Ce jeu comporte 2 niveaux, un premier niveau où seulement 1 mot apparaît à l'écran, il faudra alors choisir la bonne couleur, si c'est la bonne vous gagnerez alors 1 point. 
-Et un deuxième niveau où cette fois-ci entre 2 et 6 mots seront affichés, tous différents et tous d'une couleur différentes. Il faudra alors sélectionner les différentes couleurs qui seront affichées à l'écran, sans pour autant devoir les sélectionner dans l'ordre et vous gagnerez autant de points que de mots affichés, une seule erreur dans votre sélection et vous ne gagnerez pas de points... 
-Vous pourrez voir vos meilleurs scores sur l'écran d'acceuil, au bout de 10 tentatives, seul les  10 meilleurs seront conservés !
+Et un deuxième niveau où cette fois-ci entre 2 et 6 mots seront affichés, tous différents et tous d'une couleur différentes. Il faudra alors sélectionner les différentes couleurs qui seront affichées à l'écran, sans pour autant devoir les sélectionner dans l'ordre et vous gagnerez 1 point, une seule erreur dans votre sélection et vous ne gagnerez pas de points... 
+
 
 Les niveaux sont limités à 30s chacun. Au bout de 30s, il n'y aura plus d'apparition de nouveaux mots et vous ne pourrez plus augmenter votre score. Le record actuel est de 41 points !
 
@@ -30,7 +30,6 @@ Une fois arrivé sur un des niveaux vous pourrez commencer à jouer en appuyant 
 # Easter Egg :
 
 Et en bonus, comme tous bons "développeurs" qui se respectent, nous avons caché un petit easter egg dans l'interface, à vous de le trouver !
-
 
 
 
