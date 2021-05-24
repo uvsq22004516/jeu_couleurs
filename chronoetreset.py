@@ -47,7 +47,7 @@ orange = "dark orange"
 jaune = "goldenrod2"
 blanc = "snow"
 
-couleurs = [rouge, bleu, vert, rose, orange, jaune, blanc]
+couleurs = ["firebrick2", "deep sky blue", "forest green", "HotPink1", "dark orange", "goldenrod2", "snow"]
 couleurs_choisies = []
 couleur_clique= []
 
@@ -195,6 +195,7 @@ def fct_couleurs() :
     if NIVEAU == 1 :
         rd.shuffle(couleurs)
         couleurs_choisies = couleurs[1]
+    
 
     else :
         for i in range(var_couleurs, 0, -1) :
@@ -265,16 +266,16 @@ def fct_delete_mots() :
 def compte_point_niv1():
     """Incrémente le score de 1 si la bonne couleur est choisie"""
     global score_tot
-    if str(couleur_clique) in couleurs_choisies:
+    if couleurs_choisies in couleur_clique[0]:
         score_tot = score + 1
-        print("1")
 
     else : 
-        print("0")
+        pass
 
-    print(score_tot)
     print(couleurs_choisies)
-    print(couleur_clique)
+    print(couleur_clique[0])
+    print(score_tot)
+
 
 def compte_point_niv2() :
     """Incrémente le score de 1 si les bonnes couleurs sont choisies par le joueur"""
@@ -300,6 +301,7 @@ def compte_point_niv2() :
         score_tot = score + 1
 
     print(score_tot)
+
 #################################################
 
 
@@ -312,30 +314,37 @@ def clique(event):
             if 100 <= event.x <= 175 and 285 <= event.y <= 325 :
                 "firebrick2" in couleurs_choisies
                 couleur_clique.append("firebrick2")
+                
 
             elif 206.25 <= event.x <= 281.25 and 285 <= event.y <= 325 :
                 "deep sky blue" in couleurs_choisies  
                 couleur_clique.append("deep sky blue")
                 
+                
             elif 312.5 <= event.x <= 387.5 and 285 <= event.y <=325  :
                 "forest green" in couleurs_choisies 
                 couleur_clique.append("forest green")
+               
                 
             elif 418.75 <= event.x <= 493.75 and 285 <= event.y <= 325 :
                 "HotPink1" in couleurs_choisies 
                 couleur_clique.append("HotPink1")
                 
+                
             elif 525 <= event.x <= 600 and 285 <= event.y <= 325 :
                 "dark orange" in couleurs_choisies 
                 couleur_clique.append("dark orange")
+                
             
             elif 225 <= event.x <= 300 and 350 <= event.y <= 390 :
                 "goldenrod2" in couleurs_choisies 
                 couleur_clique.append("goldenrod2")
+                
             
             elif 400 <= event.x <= 475 and 350 <= event.y <= 390 :
                 "snow" in couleurs_choisies 
                 couleur_clique.append("snow")
+                
 
         else : 
             pass
@@ -382,7 +391,7 @@ def clique(event):
                     couleur_clique.append("faux")
         
         
-        elif len(couleur_clique) == len(couleurs_choisies):
+        if len(couleur_clique) == len(couleurs_choisies):
             compte_point_niv2()
 
         print(couleur_clique)

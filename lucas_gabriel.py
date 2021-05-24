@@ -290,6 +290,7 @@ def clique(event):
             elif 400 <= event.x <= 475 and 350 <= event.y <= 390 :
                 "snow" in couleurs_choisies 
                 couleur_clique.append("snow")
+                
 
         else : 
             pass
