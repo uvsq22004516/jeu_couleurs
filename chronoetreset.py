@@ -34,11 +34,13 @@ score = 0
 score_tot = 0
 
 temps = 30
+boucle_temps=0 #variable pour l'appel régulier de la fonction chrono()
 
-var_couleurs = rd.randint(2, 6)
+var_couleurs = rd.randint(2, 6) #variable aléatoire donnant le nombre de mots et donc de couleurs à afficher dans le niveau2
 
 
 ################## Couleurs
+"""
 rouge = "firebrick2"
 bleu = "deep sky blue"
 vert = "forest green"
@@ -46,13 +48,14 @@ rose = "HotPink1"
 orange = "dark orange"
 jaune = "goldenrod2"
 blanc = "snow"
+"""
 
-couleurs = ["firebrick2", "deep sky blue", "forest green", "HotPink1", "dark orange", "goldenrod2", "snow"]
-couleurs_choisies = []
-couleur_clique= []
+couleurs = ["firebrick2", "deep sky blue", "forest green", "HotPink1", "dark orange", "goldenrod2", "snow"] 
+couleurs_choisies = [] #liste contenant les couleurs choisies aléatoirement (donc au niveau2: len(couleurs_choisies)=var_couleurs)
+couleur_clique= [] #liste contenant les couleurs des boutons cliqués par le joueur
 
 mots = ["Rouge", "Bleu", "Vert", "Rose", "Orange", "Jaune", "Blanc"]
-mots_choisis = []
+mots_choisis = [] ##liste contenant les mots choisis aléatoirement (donc au niveau2: len(mots_choisis)=var_couleurs)
 
 
 
@@ -99,7 +102,7 @@ def règles_du_jeu():
 ################## définition et placement des widgets #############################################################
 canvas = tk.Canvas(menu_principal, width = LARGEUR, height = HAUTEUR, bg = "gray85")
 
-####cadre:
+################## cadre:
 couleurs.reverse()
 for i in range(0, len(couleurs)):
     canvas.create_line(((LARGEUR/7)*i, HAUTEUR-15),((LARGEUR/7)*(i+1), HAUTEUR-15), fill=couleurs[i], width=30)
@@ -111,12 +114,7 @@ for i in range(0, len(couleurs)):
     canvas.create_line(((LARGEUR/7)*i, 15),((LARGEUR/7)*(i+1), 15), fill=couleurs[i], width=30)
 for i in range(0, len(couleurs)):
     canvas.create_line((15, (HAUTEUR/7)*i),(15, (HAUTEUR/7)*(i+1)), fill=couleurs[i], width=30)
-
-
-###AUTRE VERSION DU CADRE:
-"""for i in range(0, len(couleurs)):
-    canvas.create_line((LARGEUR-15, (HAUTEUR/7)*i),(15, (HAUTEUR/7)*(i+1)), fill=couleurs[i], width=30)"""
-
+#########################
 
 canvas.create_text((LARGEUR/2, HAUTEUR/6), text="JEU DE COULEURS", font=("Comic Sans MS", "20", "bold"))
 
@@ -149,71 +147,53 @@ elif NIVEAU == 2:
 
 ################## définition des fonctions ###########################################################
 ################## Chronomètre:
-boucle_temps=0
-
 def chrono():
     """Change l'affichage du temps restant à intervalles réguliers (1 seconde)"""
     global var_demarrer, temps, boucle_temps
     if temps > 0:
+        var_demarrer = True
         temps-=1
         fond.itemconfigure(tps_de_jeu, text="Temps restant : " + str(temps))
         boucle_temps = fond.after(1000, chrono)
     
     else:
-        var_demarrer = False
-
-        
+        var_demarrer = False        
 ###############################
 
 
 ################## Démarrer et réinitialiser:
 def start():
     """Déclenche le chronomètre et l'affichage aléatoire de mots et couleurs"""
-    global score, couleur_clique, fond, var_demarrer
     chrono()
- 
     fct_placement()
-    fond.bind("<Button-1>", clique)
 
 def reset():
     """Réinitialise le score et le chronomètre sans 
     relancer automatiquement de nouvelle partie ni stocker le score de la partie non terminée"""
-    global var_demarrer, temps, score
-    fct_mots()
-    fct_couleurs()
-    score = 0
-    fond.itemconfigure(score_partie, text="Score : " + str(score))
+    global var_demarrer, temps, score_tot
+    var_demarrer=False
+    score_tot = 0
+    fond.itemconfigure(score_partie, text="Score : " + str(score_tot))
     temps = 30
     fond.itemconfigure(tps_de_jeu, text="Temps restant : " + str(temps))
     fond.after_cancel(boucle_temps)
-    fond.delete("textes")
-    fct_placement()
-
-    
-        
+    fond.delete("textes")        
 #############################################
 
 
 ################## Fonction de choix aléatoire des couleurs:
 def fct_couleurs() :
     """Pour un tour, cette fonction choisit aléatoirement la couleur d'affichage des mots"""
-    global var_couleurs, couleurs, couleurs_choisies
-
+    global couleurs, couleurs_choisies
 
     if NIVEAU == 1 :
         rd.shuffle(couleurs)
-        couleurs_choisies = couleurs[1]
-    
+        couleurs_choisies.append(couleurs[0])
 
     else :
-        for i in range(var_couleurs, 0, -1) :
-                rd.shuffle(couleurs)
+        rd.shuffle(couleurs)
+        for i in range(var_couleurs, -1, -1) :
                 couleurs_choisies.append(couleurs[i])
-                couleurs.remove(couleurs[i])
-        return(var_couleurs)
-
-
-    
     return(couleurs_choisies)    
 ############################################################
 
@@ -222,54 +202,38 @@ def fct_couleurs() :
 ################## Fonction de choix aléatoire des mots:
 def fct_mots() :
     """Pour un tour, cette fonction choisit aléatoirement les mots qui s'affichent"""
-    global mots_choisis
-    mots = ["Rouge", "Bleu", "Vert", "Rose", "Orange", "Jaune", "Blanc"]
+    global mots, mots_choisis
     if NIVEAU == 1 :
         rd.shuffle(mots)
-        mots_choisis = mots[1]
+        mots_choisis.append(mots[0])
 
     else : 
-        if var_couleurs < 7 :
-            for i in range(var_couleurs, 0, -1) :
-                rd.shuffle(mots)
-                mots_choisis.append(mots[i])
-                mots.remove(mots[i])
-    
-    
+        rd.shuffle(mots)
+        for i in range(var_couleurs, -1, -1) :  
+            mots_choisis.append(mots[i])
     return(mots_choisis)
 ########################################################
 
 ######################## Placement des mots :
-
-
 def fct_placement() :
     """Place le(s) mot(s) aléatoirement dans les emplacements définis dans la fonction"""
-
     global var_demarrer, mots, couleurs
-    
-    
-
     if var_demarrer == True:
         fct_mots()
         fct_couleurs()
 
         if NIVEAU == 1 :
-            fond.create_text(350, 190, text = mots_choisis, fill = couleurs_choisies, font=("Sitka Small", "20", "bold"), tag = "textes")
+            fond.create_text((350, 150), text = mots_choisis[0], fill = couleurs_choisies[0], font=("Sitka Small", "20", "bold"), tag = "textes")
 
         if NIVEAU == 2 :
-            mots = ["Rouge", "Bleu", "Vert", "Rose", "Orange", "Jaune", "Blanc"]
-            couleurs = ["firebrick2", "deep sky blue", "forest green", "HotPink1", "dark orange", "goldenrod2", "snow"]
-
             pos_mot = 0
-            placement_mots = 700 // var_couleurs
-            pos_mot = pos_mot - placement_mots/2
+            placement_mots = LARGEUR // var_couleurs
+            pos_mot -= placement_mots/2
 
-            for i in range(var_couleurs, 0, -1) :
+            for i in range(var_couleurs, -1, -1) :
                 pos_mot = pos_mot + placement_mots
-                i -=1
-                fond.create_text(pos_mot ,150, text = mots_choisis[i], fill = couleurs_choisies[i], font = ("Sitka Small", "20", "bold"), tag = "textes")
-
-
+                fond.create_text((pos_mot ,150), text = mots_choisis[i], fill = couleurs_choisies[i], font = ("Sitka Small", "20", "bold"), tag = "textes")
+#############################################
 
 
 
@@ -277,16 +241,14 @@ def fct_placement() :
 def compte_point_niv1():
     """Incrémente le score de 1 si la bonne couleur est choisie"""
     global score_tot
-    if couleurs_choisies in couleur_clique[0]:
-        score_tot +=  1
-
-    else : 
-        pass
+    if var_demarrer == True:
+        if couleur_clique[0] == couleurs_choisies[0]:
+            score_tot +=  1
+            fond.itemconfigure(score_partie, text="Score : " + str(score_tot))
+            tour_suivant()
     
-
-    print(couleurs_choisies)
-    print(couleur_clique[0])
-    print(score_tot)
+        else:
+            tour_suivant()
 
 
 def compte_point_niv2() :
@@ -314,8 +276,10 @@ def compte_point_niv2() :
 
     print(score_tot)
 
-############  Fonction meilleur score
-
+######################## Sauvegarde des 10 meilleurs score :
+def sauv_score():
+    pass
+############################################################
 
 
 
@@ -323,52 +287,36 @@ def compte_point_niv2() :
 
 def clique(event):
     """docstring"""
+    global couleur_clique
     if NIVEAU == 1:
 
         if len(couleur_clique) == 0 :
 
             if 100 <= event.x <= 175 and 285 <= event.y <= 325 :
-                "firebrick2" in couleurs_choisies
                 couleur_clique.append("firebrick2")
                 
-
-            elif 206.25 <= event.x <= 281.25 and 285 <= event.y <= 325 :
-                "deep sky blue" in couleurs_choisies  
-                couleur_clique.append("deep sky blue")
+            elif 206.25 <= event.x <= 281.25 and 285 <= event.y <= 325 : 
+                couleur_clique.append("deep sky blue")    
                 
-                
-            elif 312.5 <= event.x <= 387.5 and 285 <= event.y <=325  :
-                "forest green" in couleurs_choisies 
-                couleur_clique.append("forest green")
-               
+            elif 312.5 <= event.x <= 387.5 and 285 <= event.y <=325  : 
+                couleur_clique.append("forest green")    
                 
             elif 418.75 <= event.x <= 493.75 and 285 <= event.y <= 325 :
-                "HotPink1" in couleurs_choisies 
                 couleur_clique.append("HotPink1")
-                
-                
-            elif 525 <= event.x <= 600 and 285 <= event.y <= 325 :
-                "dark orange" in couleurs_choisies 
+                    
+            elif 525 <= event.x <= 600 and 285 <= event.y <= 325 : 
                 couleur_clique.append("dark orange")
                 
-            
-            elif 225 <= event.x <= 300 and 350 <= event.y <= 390 :
-                "goldenrod2" in couleurs_choisies 
+            elif 225 <= event.x <= 300 and 350 <= event.y <= 390 : 
                 couleur_clique.append("goldenrod2")
                 
-            
             elif 400 <= event.x <= 475 and 350 <= event.y <= 390 :
-                "snow" in couleurs_choisies 
                 couleur_clique.append("snow")
-                
 
-        else : 
             compte_point_niv1()
             fond.delete("textes")
             fct_placement()
-
-        
-
+            
     
           
     if NIVEAU == 2:
@@ -425,11 +373,16 @@ def clique(event):
 def tour_suivant():
     global couleurs, couleur_clique, couleurs_choisies, mots, mots_choisis
     if NIVEAU == 1:
-        pass
+        couleurs = ["firebrick2", "deep sky blue", "forest green", "HotPink1", "dark orange", "goldenrod2", "snow"]
+        couleurs_choisies = []
+        couleur_clique= []
+        mots = ["Rouge", "Bleu", "Vert", "Rose", "Orange", "Jaune", "Blanc"]
+        mots_choisis = []
+        fct_placement()
 
     elif NIVEAU == 2:
         if len(couleur_clique) == var_couleurs:
-            couleurs = [rouge, bleu, vert, rose, orange, jaune, blanc]
+            couleurs = ["firebrick2", "deep sky blue", "forest green", "HotPink1", "dark orange", "goldenrod2", "snow"]
             couleurs_choisies = []
             couleur_clique= []
             mots = ["Rouge", "Bleu", "Vert", "Rose", "Orange", "Jaune", "Blanc"]
@@ -442,7 +395,7 @@ fond = tk.Canvas(jeu, width = LARGEUR, height = HAUTEUR, bg = "gray85")
 
 ################## règle, score et chronomètre:
 fond.create_text(LARGEUR//2, 20, text="Tapez la couleur des mots, et pas le texte des mots!!!", font=("Comic Sans MS", "10"))
-score_partie = fond.create_text(LARGEUR//2, 35, text="Score : " + str(score), font=("Comic Sans MS", "10"))
+score_partie = fond.create_text(LARGEUR//2, 35, text="Score : " + str(score_tot), font=("Comic Sans MS", "10"))
 tps_de_jeu = fond.create_text(LARGEUR//2, 50, text = "Temps restant : " + str(temps), font=("Comic Sans MS", "10"))
 
 
@@ -473,5 +426,7 @@ btn_demarrer.grid(row=4, column=0)
 btn_reinitialiser.grid(row=4, column=5)
 
 fond.grid(row=0, rowspan= 5, columnspan=6)
+
+fond.bind("<Button-1>", clique)
 
 jeu.mainloop()

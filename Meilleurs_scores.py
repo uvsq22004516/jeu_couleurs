@@ -18,5 +18,5 @@ elif nombre_parties > 10 :
             scores.sort(reverse=True)
     fic = open("Meilleurs scores", "w")
     fic.write("Dix meilleurs scores :")
-    for i in range len(scores) :
+    for i in range (len(scores)) :
         fic.write(str(scores[i]))
