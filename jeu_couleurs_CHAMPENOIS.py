@@ -72,6 +72,7 @@ def niv_2():
     menu_principal.destroy()
 
 def meilleurs_scores():
+# la fonction est définie dans un fichier auxiliaire mais ne fonctionne pas 
     pass
 
 
